@@ -1,0 +1,555 @@
+<mvc:View
+    controllerName="finning.formularioproveedores.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        title="Formulario para Nuevos Proveedores"
+        showHeader="false"
+       
+    >
+
+        <!-- HEADER -->
+        <Bar design="Header" class="blackBG headerHeight headerBar">
+          
+            <contentMiddle>
+                <HBox
+                        class="blackBG headerSubContainer"
+                        justifyContent="Center"
+                        alignItems="Center"
+                        width="100%"
+                    >
+                    <Image
+                        src="assets/img/Finning_logo.png"
+                        height="60px"
+                    />
+                </HBox>
+            </contentMiddle>
+        </Bar>
+
+        <content>
+            <FlexBox
+                height="100%"
+                width="100%"
+                alignItems="Start"
+                justifyContent="Center"
+            >
+                <f:SimpleForm
+                    id="newSupplierForm"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    width="800px"
+                    backgroundDesign="Transparent"
+                >
+                    <f:content>
+                        <HBox
+                            justifyContent="Center"
+                            width="100%"
+                        >
+                            <VBox
+                                width="100%"
+                                class="sapUiSmallMargin"
+                                justifyContent="Center"
+                            >
+                                <HBox
+                                    justifyContent="Center"
+                                    width="100%"
+                                >
+                                    <Title
+                                        text="REGISTRO DE PROVEEDORES"
+                                        level="H1"
+                                        textAlign="Center"
+                                    />
+                                </HBox>
+
+                                <!-- Campos en Común -->
+                                <VBox
+                                    id="CommonFields"
+                                    justifyContent="Center"
+                                    rowGap="15px"
+                                >
+                                    <VBox>
+                                        <Label
+                                            text="Nombre"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <Input
+                                            name="Nombre"
+                                            width="100%"
+                                            placeholder="Nombre"
+                                            liveChange=".onFormChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Apellido"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <Input
+                                            name="Apellido"
+                                            width="100%"
+                                            placeholder="Apellido"
+                                            liveChange=".onFormChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Email"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <Input
+                                            name="Email"
+                                            width="100%"
+                                            placeholder="Correo Electrónico"
+                                            liveChange=".onFormChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Repita E-mail"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <Input
+                                            name="RepEmail"
+                                            width="100%"
+                                            placeholder="Correo Electrónico"
+                                            liveChange=".onFormChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Identificador Fiscal de Empresa"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <Input
+                                            name="IdentificadorFiscal"
+                                            width="100%"
+                                            placeholder="Identificador Fiscal"
+                                            liveChange=".onFormChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Nro. de Factura/Orden de Compra reciente"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <Input
+                                            name="FacturaOrden"
+                                            width="100%"
+                                            placeholder="Número de Factura o Orden de Compra"
+                                            liveChange=".onFormChange"
+                                        />
+                                    </VBox>
+                                </VBox>
+
+                                
+                                <Label
+                                    text="País"
+                                    required="true"
+                                    design="Bold"
+                                    class="boldText sapUiSmallMarginTop"
+                                />
+
+                                <Select
+                                    id="countrySelect"
+                                    change="onCountryChange"
+                                    width="100%"
+                                    class="sapUiSmallMarginBottom"
+                                >
+                                    <items>
+                                        <core:Item
+                                            key="CHFields"
+                                            text="Chile"
+                                        />
+                                        <core:Item
+                                            key="ARFields"
+                                            text="Argentina"
+                                        />
+                                        <core:Item
+                                            key="BOLFields"
+                                            text="Bolivia"
+                                        />
+                                    </items>
+                                </Select>
+
+                                <!-- CHILE -->
+                                <VBox
+                                    id="CHFields"
+                                    visible="false"
+                                    justifyContent="Center"
+                                    rowGap="15px"
+                                >
+                                    <VBox>
+                                        <Label
+                                            text="Copia Cédula de Identidad Rep. Legal"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="clCedula"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Copia de la inscripción social con vigencia"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="clInscripcion"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Certificado de obligaciones laborales"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="clCertificadoLaboral"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Dicom actualizado"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="clDicom"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Certificado Bancario"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="clCertificadoBancario"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+                                </VBox>
+
+                                <!-- ARGENTINA -->
+                                <VBox
+                                    id="ARFields"
+                                    visible="false"
+                                    justifyContent="Center"
+                                    rowGap="15px"
+                                >
+                                    <VBox>
+                                        <Label
+                                            text="Constancia de inscripción AFIP"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="arAfip"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Certificado de IIBB (ingresos brutos)"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="arIibb"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Constancia Padrón Web (Convenio Multilateral)"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="arPadronWeb"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Comprobante de CBU"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="arCbu"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="NOSIS actualizado"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="arNosis"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+                                </VBox>
+
+                                <!-- BOLIVIA -->
+                                <VBox
+                                    id="BOLFields"
+                                    visible="false"
+                                    justifyContent="Center"
+                                    rowGap="15px"
+                                >
+                                    <VBox>
+                                        <Label
+                                            text="Licencia de Funcionamiento"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="boLicencia"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Certificado NIT"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="boNit"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="FUN de la empresa"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="boFun"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Poder del o los representantes legales"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="boPoder"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Copia Inscripción de la sociedad"
+                                            required="true"
+                                            design="Bold"
+                                            class="boldText"
+                                        />
+                                        <u:FileUploader
+                                            name="boInscripcion"
+                                            uploadUrl="upload/"
+                                            width="100%"
+                                            change=".onFileChange"
+                                        />
+                                    </VBox>
+                                </VBox>
+
+                                
+                                <!-- <HBox
+                                 justifyContent="Center"
+                                    alignItems="Center"
+                                    width="100%"
+                                    class="sapUiSmallMarginTop">
+                                    
+                                </HBox> -->
+
+
+
+                                <HBox
+                                    justifyContent="Center"
+                                    alignItems="Center"
+                                    width="100%"
+                                    class="sapUiSmallMarginTop"
+                                    
+                                >
+                                
+                                <core:HTML
+                                id="captchaScript"
+                                preferDOM="true"
+                                sanitizeContent="false"
+                                content='
+                                    &lt;script src="https://www.google.com/recaptcha/api.js?render=6LeznmYrAAAAADe8HB4wKwbWmV-TvMnKajqOHmBl"&gt;&lt;/script&gt;
+                                ' />
+                                    <CheckBox
+                                        id="acceptTerms"
+                                        selected="{/termsAccepted}"
+                                        select=".onFormChange"
+                                    />
+                                    <HBox>
+                                        <Text
+                                            text="Acepto los "
+                                            class="textSpacing"
+                                        />
+
+                                        <Text
+                                            text="Términos del Servicio"
+                                            class="boldText"
+                                        />
+                                    </HBox>
+                                </HBox>
+
+
+                                <HBox
+                                    justifyContent="Center"
+                                    width="100%"
+                                    alignItems="Center"
+                                >
+                                    <Button
+                                        text="Finalizar Registro"
+                                        type="Unstyled"
+                                        press="onSubmit"
+                                        icon="sap-icon://save"
+                                        iconFirst="true"
+                                        class="submitBtn submitBtnUnabled"
+                                        id="subBtn"
+                                    >
+                                        <layoutData>
+                                            <FlexItemData
+                                                styleClass="sapUiTinyMarginEnd"
+                                            />
+                                        </layoutData>
+                                    </Button>
+
+                                    <Button
+                                        text="Limpiar Formulario"
+                                        type="Unstyled"
+                                        press="onClearForm"
+                                        icon="sap-icon://delete"
+                                        iconFirst="true"
+                                        class="cancelBtn"
+                                    />
+                                </HBox>
+                                
+                            </VBox>
+
+                        </HBox>
+                        
+                        <!-- CAPTCHA -->
+
+
+                    </f:content>
+                </f:SimpleForm>
+            </FlexBox>
+        </content>
+
+        <!-- FOOTER -->
+        <footer>
+            <Bar
+                design="Footer"
+                class="blackBG footerHeight"
+            >
+                <contentMiddle>
+                    <HBox
+                        class="blackBG"
+                        justifyContent="Center"
+                        alignItems="Center"
+                        height="100%"
+                        width="100%"
+                    >
+                        <Image
+                            src="assets/img/Finning_logo.png"
+                            height="40px"
+                        />
+                    </HBox>
+                </contentMiddle>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

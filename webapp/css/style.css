@@ -1,0 +1,102 @@
+/* Enter your custom styles here */
+.boldText{
+    font-weight: bold;
+    color:black !important;
+}
+
+.textSpacing {
+    margin-right: 4px; 
+}
+
+.yellowBG{
+    background-color: #ffd900 !important;
+}
+
+.blackBG{
+    background-color: black !important;
+}
+
+
+.submitBtn{
+    background-color: black !important;
+    color: white !important;
+    font-weight: bold;
+    border: none !important;
+    border-radius: 3px;
+    width: 160px;
+}
+
+.submitBtn .sapUiIcon{
+    color: white;
+    margin-right: 5px;
+} 
+
+.submitBtnUnabled{
+   
+    opacity:0.4;
+    pointer-events: none;
+    cursor:default;
+}
+
+.submitBtnEnabled{
+    opacity:1;
+    pointer-events:all;
+    cursor:pointer;
+}
+
+.submitBtnEnabled:hover {
+    background-color: #333 !important;
+    cursor:pointer;
+}
+
+.cancelBtn .sapUiIcon{
+    color: white;
+}
+
+.cancelBtn{
+    background-color: black !important;
+    color: white !important;
+    font-weight: bold;
+    border: none !important;
+    border-radius: 3px;
+}
+
+.cancelBtn .sapUiIcon{
+    color: white;
+}
+
+.cancelBtn:hover {
+    background-color: #333 !important; 
+    cursor:pointer;
+}
+
+.headerBar .sapMBarPH {
+    height: 80px !important;
+}
+
+.headerHeight{
+    height: 80px !important;
+    display: grid;
+    align-items: Start;
+}
+
+.footerHeight{
+    height: 40px !important;
+    display: grid;
+    align-content: start;
+    padding-top: 5px;
+}
+
+
+.headerSubContainer{
+    margin-top: 15px !important;
+}
+
+
+.sapMBtnInner{
+    color:#dba300;
+}
+
+.TEST{
+    border:solid red;
+}
